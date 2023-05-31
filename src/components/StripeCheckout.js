@@ -11,16 +11,56 @@ import axios from 'axios'
 import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const CheckoutForm = () => {
-  return <h4>hello from Stripe Checkout </h4>
+  const { cart, totalAmount, shippingFee, clearCart } = useCartContext();
+  const { myUser } = useUserContext();
+  const navigate = useNavigate();
+
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isProcessing, setIsProcessing] = useState('');
+  const [isDisable, setIsDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState('');
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const createPaymentIntent = async() => {
+
+  };
+
+  useEffect(() => {
+    createPaymentIntent();
+  }, [])
+
+  const handleChange = async(event) => {
+
+  }
+
+  const handleSubmit = async(ev) => {
+
+  }
+
+  return (
+    <div>
+      <form id="payment-form"
+            onSubmit={handleSubmit}>
+        <CardElement id="card-element"
+                     onChange={handleChange}
+        >
+        </CardElement>
+      </form>
+    </div>
+  );
 }
 
 const StripeCheckout = () => {
   return (
     <Wrapper>
-      <CheckoutForm />
+      <Elements>
+        <CheckoutForm />
+      </Elements>
     </Wrapper>
   )
 }

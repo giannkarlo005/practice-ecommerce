@@ -23,7 +23,7 @@ const CartButtons = () => {
         </span>
       </Link>
       {myUser ? 
-      (    
+      (
       <button type='button'
               className='auth-btn'
               onClick={() => {
